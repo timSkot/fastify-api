@@ -1,12 +1,13 @@
-import { IListing } from '../interface/ListingInterface.js'
+import { IListingModel } from '../interface/ListingInterface.js'
 import Sequelize, { Model, Optional } from 'sequelize'
 import { sequelize } from '../utils/database.js'
 
-type ListingCreationAttributes = Optional<IListing, 'id'>
+type ListingCreationAttributes = Optional<IListingModel, 'id'>
 
-interface ListingInstance extends Model<IListing, ListingCreationAttributes>, IListing {
+interface ListingInstance extends Model<IListingModel, ListingCreationAttributes>, IListingModel {
   createdAt?: Date
   updatedAt?: Date
+  error?: object
 }
 
 const Listing = sequelize.define<ListingInstance>('Listings', {
@@ -16,19 +17,19 @@ const Listing = sequelize.define<ListingInstance>('Listings', {
     primaryKey: true,
   },
   model: {
-    allowNull: true,
+    allowNull: false,
     type: Sequelize.STRING,
   },
   type: {
-    allowNull: true,
+    allowNull: false,
     type: Sequelize.STRING,
   },
   color: {
-    allowNull: true,
+    allowNull: false,
     type: Sequelize.STRING,
   },
   year: {
-    allowNull: true,
+    allowNull: false,
     type: Sequelize.INTEGER,
     validate: {
       isInt: true,

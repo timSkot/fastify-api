@@ -1,10 +1,13 @@
 export interface IListing {
   id: number
-  model: string
-  type: string
-  color: string
-  year: number
+  jsonrpc: string
+  method: string
+  params: object
 }
-export interface IQueryDelete {
-  id: string
+export interface IListingModel {
+  id?: number
+  model?: string
+  type?: string
+  color?: string
+  year?: number
 }
